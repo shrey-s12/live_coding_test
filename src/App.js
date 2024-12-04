@@ -8,7 +8,6 @@ const images = [
   { url: image1, ready: true, error: false },
   { url: image2, ready: false, error: true },
   { url: image3, ready: true, error: false },
-  { url: "", ready: true, error: false },
 ];
 
 function App() {
