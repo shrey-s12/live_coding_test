@@ -4,9 +4,14 @@ import spinnerIcon from '../assets/spinner_overlay.jpg'
 
 const ImageCard = ({ name, count, images }) => {
     const [loader, setLoader] = useState(false);
+    const [loadError, setLoadError] = useState(false);
     setTimeout(() => {
         setLoader(true);
     }, 5000);
+    setTimeout(() => {
+        setLoadError(true);
+    }, 15000);
+
     while (images.length < 4) {
         images.push({ url: "", ready: false, error: false })
     }
@@ -20,8 +25,8 @@ const ImageCard = ({ name, count, images }) => {
                             <div key={index}>
                                 {image.error
                                     ? <>
-                                        {loader && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
-                                        {!loader && <img src={spinnerIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                                        {loadError && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                                        {!loadError && <img src={spinnerIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
                                     </>
                                     :
                                     <>
@@ -38,7 +43,7 @@ const ImageCard = ({ name, count, images }) => {
                         <p className='text-white'>{count}+ offline centers</p>
                     </div>
                 </div>
-                {hasError && loader && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                {hasError && loadError && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
             </div>
         </div>
     )
