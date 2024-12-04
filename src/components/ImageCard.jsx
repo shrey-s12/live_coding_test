@@ -38,7 +38,7 @@ const ImageCard = ({ name, count, images }) => {
                         <p className='text-white'>{count}+ offline centers</p>
                     </div>
                 </div>
-                {hasError && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                {hasError && loader && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
             </div>
         </div>
     )
