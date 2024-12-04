@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ImageCard from "./components/ImageCard";
+import image1 from "./assets/download.jpeg";
+import image2 from "./assets/top-section-bg.jpeg";
+import image3 from "./assets/tree-736885_1280.jpg";
+import image4 from "./assets/error_icon.png";
+
+const images = [
+  { url: image1, ready: true, error: false },
+  { url: image2, ready: false, error: true },
+  { url: image3, ready: true, error: false },
+  { url: image4, ready: false, error: true },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ImageCard name="Explorin Academy" count={3} images={images} />
     </div>
   );
 }
