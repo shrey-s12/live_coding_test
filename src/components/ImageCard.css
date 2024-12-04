@@ -1,20 +1,26 @@
 /* ImageCard.css */
 
 .card-container {
-    max-width: 24rem; /* Max width of the card */
+    max-width: 24rem;
+    /* Max width of the card */
     margin: auto;
     background-color: #fff;
-    border-radius: 1rem; /* Rounded corners */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Box shadow */
+    border-radius: 1rem;
+    /* Rounded corners */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    /* Box shadow */
     overflow: hidden;
 }
 
 .card-image {
     width: 8rem;
     height: 8rem;
-    object-fit: cover; /* Ensures image covers the circle area */
-    border-radius: 9999px; /* Fully round images */
-    border: 4px solid #e0e0e0; /* Light gray border */
+    object-fit: cover;
+    /* Ensures image covers the circle area */
+    border-radius: 9999px;
+    /* Fully round images */
+    border: 4px solid #e0e0e0;
+    /* Light gray border */
 }
 
 .card-content {
@@ -25,10 +31,12 @@
 .card-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #2d3748; /* Dark gray color */
+    color: #2d3748;
+    /* Dark gray color */
 }
 
 .card-count {
-    color: #4a5568; /* Medium gray for the count */
+    color: #4a5568;
+    /* Medium gray for the count */
     margin-top: 0.5rem;
 }
