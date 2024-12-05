@@ -1,16 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import errorIcon from '../assets/error_icon.png'
 import spinnerIcon from '../assets/spinner_overlay.jpg'
 
 const ImageCard = ({ name, count, images }) => {
     const [loader, setLoader] = useState(false);
     const [loadError, setLoadError] = useState(false);
-    setTimeout(() => {
-        setLoader(true);
-    }, 5000);
-    setTimeout(() => {
-        setLoadError(true);
-    }, 15000);
+    const [timer, setTimer] = useState(5);
+    const [retryCount, setRetryCount] = useState(0);
+
+    // Images is loaded and store in an array as ready = true and error = false and vice versa
+    images.forEach((image, index) => {
+        if (image.error === true) {
+            images[index].ready = false;
+            images[index].error = true;
+        } else {
+            const img = new Image();
+            img.src = image.url;
+            img.onload = () => {
+                images[index].ready = true;
+                images[index].error = false;
+            }
+            img.onerror = () => {
+                images[index].ready = false;
+                images[index].error = true;
+            }
+        }
+    });
+
+    useEffect(() => {
+        if (retryCount < 3) {
+            if (timer === 0) {
+                setTimer(5);
+                setLoader(true);
+                setRetryCount(retryCount + 1);
+            } else {
+                setTimeout(() => {
+                    setTimer(timer - 1);
+                }, 1000);
+            }
+        } else {
+            setTimer(0);
+            setLoadError(true);
+        }
+    }, [timer, retryCount]);
 
     while (images.length < 4) {
         images.push({ url: "", ready: false, error: false })
@@ -43,7 +75,11 @@ const ImageCard = ({ name, count, images }) => {
                         <p className='text-white'>{count}+ offline centers</p>
                     </div>
                 </div>
-                {hasError && loadError && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                <div>
+                    <div className='text-white'>Timer: <span>{timer}</span></div>
+                    <div className='text-white'>Retry Count: <span>{retryCount}</span></div>
+                    {hasError && loadError && <img src={errorIcon} alt="error" className='h-[38px] w-[38px] rounded-3xl object-cover border' />}
+                </div>
             </div>
         </div>
     )
