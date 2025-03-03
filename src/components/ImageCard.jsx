@@ -8,7 +8,6 @@ const ImageCard = ({ name, count, images }) => {
     const [timer, setTimer] = useState(5);
     const [retryCount, setRetryCount] = useState(0);
 
-    // Images is loaded and store in an array as ready = true and error = false and vice versa
     images.forEach((image, index) => {
         if (image.error === true) {
             images[index].ready = false;
@@ -45,7 +44,7 @@ const ImageCard = ({ name, count, images }) => {
     }, [timer, retryCount]);
 
     while (images.length < 4) {
-        images.push({ url: "", ready: false, error: false })
+        images.push({ url: "", ready: true, error: false })
     }
     const hasError = images.reduce((acc, image) => acc || image.error, false)
     return (
